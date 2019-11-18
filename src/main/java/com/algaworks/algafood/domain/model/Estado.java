@@ -23,7 +23,6 @@ public class Estado {
 	private String nome;
 	
 	@Column(nullable = false)
-	private String UF;
-	
+	private String UF;	
 	
 }

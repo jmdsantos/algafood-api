@@ -19,8 +19,6 @@ public class InclusaoCidadeMain {
 		CidadeRepository cidades = applicationContext.getBean(CidadeRepository.class);
 		EstadoRepository estados = applicationContext.getBean(EstadoRepository.class);
 		
-		
-		
 		Cidade cidade1 = new Cidade(); 
 		cidade1.setNome("São Paulo");		
 		cidade1.setEstado(estados.buscar(3L));

@@ -103,7 +103,7 @@ public class RestauranteController {
 		ObjectMapper objectMapper = new ObjectMapper();
 		Restaurante restauranteOrigem = objectMapper.convertValue(dadosOrigem, Restaurante.class);
 		
-		System.out.println(restauranteOrigem);
+		//System.out.println(restauranteOrigem);
 		
 		dadosOrigem.forEach((nomePropriedade, valorPropriedade) -> {
 			Field field = ReflectionUtils.findField(Restaurante.class, nomePropriedade);
@@ -111,7 +111,7 @@ public class RestauranteController {
 
 			Object novoValor = ReflectionUtils.getField(field, restauranteOrigem);
 			
-			System.out.println(nomePropriedade + " = " + valorPropriedade + " = " + novoValor);
+			//System.out.println(nomePropriedade + " = " + valorPropriedade + " = " + novoValor);
 			
 			ReflectionUtils.setField(field, restauranteDestino, novoValor);
 			

@@ -1,20 +1,20 @@
 package com.algaworks.algafood.infrastructure.repository;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
 
 import com.algaworks.algafood.domain.model.Restaurante;
 import com.algaworks.algafood.domain.repository.RestauranteRepositoryQueries;
-
-import lombok.var;
 
 @Repository
 public class RestauranteRepositoryImpl implements RestauranteRepositoryQueries {
@@ -29,8 +29,23 @@ public class RestauranteRepositoryImpl implements RestauranteRepositoryQueries {
 	public List<Restaurante> find(String nome, 
 			BigDecimal taxaFreteInicial, BigDecimal taxaFreteFinal){
 		
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
 		
-		var jpql = new StringBuilder(); 
+		CriteriaQuery<Restaurante> criteria = builder.createQuery(Restaurante.class);
+		
+		Root<Restaurante> root = criteria.from(Restaurante.class);
+		
+		Predicate nomePredicate = builder.like(root.get("nome"), "%" + nome + "%");
+		Predicate taxaInicialPredicate = builder.greaterThanOrEqualTo(root.get("taxaFrete"), taxaFreteInicial);
+		Predicate taxaFinalPredicate = builder.lessThanOrEqualTo(root.get("taxaFrete"), taxaFreteFinal);
+		
+		criteria.where(nomePredicate, taxaInicialPredicate, taxaFinalPredicate);
+		
+		TypedQuery<Restaurante> query = manager.createQuery(criteria);
+		return query.getResultList();
+		
+		
+		/*var jpql = new StringBuilder(); 
 		var parametros = new HashMap<String, Object>();
 		
 		jpql.append("from Restaurante where 0 = 0 ") ;
@@ -58,9 +73,9 @@ public class RestauranteRepositoryImpl implements RestauranteRepositoryQueries {
 		TypedQuery<Restaurante> query =  manager
 				.createQuery(jpql.toString(), Restaurante.class);
 		
-		parametros.forEach((chave, valor) -> query.setParameter(chave, valor));
+		parametros.forEach((chave, valor) -> query.setParameter(chave, valor));*/
 		
-		return query.getResultList();
+		
 		
 	}
 	

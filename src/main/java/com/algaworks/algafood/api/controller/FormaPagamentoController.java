@@ -20,63 +20,64 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.algaworks.algafood.domain.exception.EntidadeEmUsoException;
 import com.algaworks.algafood.domain.exception.EntidadeNaoEncontradaException;
-import com.algaworks.algafood.domain.model.Estado;
-import com.algaworks.algafood.domain.repository.EstadoRepository;
-import com.algaworks.algafood.domain.service.CadastroEstadoService;
+import com.algaworks.algafood.domain.model.FormaPagamento;
+import com.algaworks.algafood.domain.repository.FormaPagamentoRepository;
+import com.algaworks.algafood.domain.service.CadastroFormaPagamentoService;
 
 @RestController
-@RequestMapping("/estados")
-public class EstadoController {
+@RequestMapping("/formaspagamento")
+public class FormaPagamentoController {
 
 	@Autowired
-	private EstadoRepository estadoRepository;
+	private FormaPagamentoRepository formaPagamentoRepository;
 	
 	@Autowired
-	private CadastroEstadoService cadastroEstado;
+	private CadastroFormaPagamentoService cadastroFormaPagamentoService;
 	
 	
 	@GetMapping
-	public List<Estado> listar(){
-		return estadoRepository.findAll();
+	public List<FormaPagamento> listar(){
+		return formaPagamentoRepository.findAll();
 	}
 	
-	@GetMapping("/{estadoId}")
-	public ResponseEntity<Estado> buscar(@PathVariable Long estadoId) {
-		Optional<Estado> estado = estadoRepository.findById(estadoId);
+	@GetMapping("/{formaPagamentoId}")
+	public ResponseEntity<FormaPagamento> buscar(@PathVariable Long formaPagamentoId) {
+		Optional<FormaPagamento> formaPagamento = formaPagamentoRepository.findById(formaPagamentoId);
 		
-		if (estado.isPresent()) {
-			return ResponseEntity.ok(estado.get());
+		if (formaPagamento.isPresent()) {
+			return ResponseEntity.ok(formaPagamento.get());
 		}
 		
 		return ResponseEntity.notFound().build();
 	}
+	
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Estado adicionar(@RequestBody Estado estado) {
-		return cadastroEstado.salvar(estado);
+	public FormaPagamento adicionar(@RequestBody FormaPagamento formaPagamento) {
+		return cadastroFormaPagamentoService.salvar(formaPagamento);
 	}
 	
-	@PutMapping("/{estadoId}")
-	public ResponseEntity<Estado> atualizar(@PathVariable Long estadoId,
-			@RequestBody Estado estado) {
-		Optional<Estado> estadoAtual = estadoRepository.findById(estadoId);
+	@PutMapping("/{formaPagamentoId}")
+	public ResponseEntity<FormaPagamento> atualizar(@PathVariable Long formaPagamentoId,
+			@RequestBody FormaPagamento formaPagamento) {
+		Optional<FormaPagamento> formaPagamentoAtual = formaPagamentoRepository.findById(formaPagamentoId);
 		
-		if (estadoAtual.isPresent()) {
-			BeanUtils.copyProperties(estado,estadoAtual.get(), "id");
+		if (formaPagamentoAtual.isPresent()) {
+			BeanUtils.copyProperties(formaPagamento,formaPagamentoAtual.get(), "id");
 			
-			Estado estadoSalva = cadastroEstado.salvar(estadoAtual.get());
+			FormaPagamento formaPagamentoSalva = cadastroFormaPagamentoService.salvar(formaPagamentoAtual.get());
 			
-			return ResponseEntity.ok(estadoSalva);
+			return ResponseEntity.ok(formaPagamentoSalva);
 		}
 		
 		return ResponseEntity.notFound().build();
 	}
 	
-	@DeleteMapping("/{estadoId}")
-	public ResponseEntity<Estado> remove(@PathVariable Long estadoId) {
+	@DeleteMapping("/{formaPagamentoId}")
+	public ResponseEntity<FormaPagamento> remove(@PathVariable Long formaPagamentoId) {
 		try {
-			cadastroEstado.excluir(estadoId);
+			cadastroFormaPagamentoService.excluir(formaPagamentoId);
 			return ResponseEntity.noContent().build();
 			
 		} catch (EntidadeNaoEncontradaException e) {

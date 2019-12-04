@@ -8,6 +8,13 @@ import com.algaworks.algafood.domain.model.Restaurante;
 
 public class RestauranteSpecs {
 
+	/**
+	 * Retrieves all entity the Restaurante with taxa free
+	 *
+	 * @param nome
+	 * @return the list with all Restaurantes
+	 * @throws IllegalArgumentException if {@code id} is {@literal null}.
+	 */
 	public static Specification<Restaurante> comFreteGratis(){
 		return (root, query, builder) ->
 		builder.equal(root.get("taxaFrete"), BigDecimal.ZERO);

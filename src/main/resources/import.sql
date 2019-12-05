@@ -12,9 +12,9 @@ insert into cozinha (id, nome) values (1, 'Tailandesa');
 insert into cozinha (id, nome) values (2, 'Indiana');
 insert into cozinha (id, nome) values (3, 'Francesa');
 
-insert into restaurante (nome, taxa_frete, cozinha_id, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro, endereco_cidade_id) values ('Thai Gourmet', 10.00, 1, '91060120', 'Rua Fulano de Tal', '111', 'Sem complemento', 'Bairro Funalo', 1 );
-insert into restaurante (nome, taxa_frete, cozinha_id) values ('Thai Delivery', 3.50, 1);
-insert into restaurante (nome, taxa_frete, cozinha_id) values ('Indiana Restaurante', 8.50, 2);
+insert into restaurante (nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro, endereco_cidade_id) values ('Thai Gourmet', 10.00, 1, utc_timestamp, utc_timestamp, '91060120', 'Rua Fulano de Tal', '111', 'Sem complemento', 'Bairro Funalo', 1 );
+insert into restaurante (nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao) values ('Thai Delivery', 3.50, 1, utc_timestamp, utc_timestamp );
+insert into restaurante (nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao) values ('Indiana Restaurante', 8.50, 2, utc_timestamp, utc_timestamp );
 
 insert into formapagamento(id,descricao) values (1, "Cartão");
 insert into formapagamento(id,descricao) values (2, "Debito");

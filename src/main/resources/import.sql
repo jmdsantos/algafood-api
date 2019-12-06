@@ -16,6 +16,11 @@ insert into restaurante (nome, taxa_frete, cozinha_id, data_cadastro, data_atual
 insert into restaurante (nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao) values ('Thai Delivery', 3.50, 1, utc_timestamp, utc_timestamp );
 insert into restaurante (nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao) values ('Indiana Restaurante', 8.50, 2, utc_timestamp, utc_timestamp );
 
+insert into produto(id, nome, descricao, preco, ativo) values (1, 'Batata', 'Batata frita com queijo', 5.25, true);
+insert into produto(id, nome, descricao, preco, ativo) values (2, 'Suco', 'Suco de Laranja', 8.00, true);
+
+insert into restaurante_produtos(restaurante_id, produtos_id) values (1,1), (1,2);
+
 insert into formapagamento(id,descricao) values (1, "Cartão");
 insert into formapagamento(id,descricao) values (2, "Debito");
 insert into formapagamento(id,descricao) values (3, "Dinheiro");

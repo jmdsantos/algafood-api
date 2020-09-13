@@ -66,7 +66,7 @@ public class Restaurante {
 	inverseJoinColumns = @JoinColumn(name="forma_pagamento_id"))
 	private List<FormaPagamento> formasPagamento = new ArrayList<>(); 
 	
-	//@JsonIgnore
+	@JsonIgnore
 	@ManyToMany
 	@JoinColumn( name = "restaurante_id")
 	private List<Produto> produtos = new ArrayList<>(); 

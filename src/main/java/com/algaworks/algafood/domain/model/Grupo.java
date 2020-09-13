@@ -34,9 +34,9 @@ public class Grupo {
 	
 	@JsonIgnore
 	@ManyToMany 
-	@JoinTable(name = "grupo_permissoes",
+	@JoinTable(name = "grupo_permissao",
 	schema = "algafood",
 	joinColumns = @JoinColumn(name="grupo_id"),
-	inverseJoinColumns = @JoinColumn(name="permissoes_id"))
+	inverseJoinColumns = @JoinColumn(name="permissao_id"))
 	private List<Permissao> permissoes = new ArrayList<>();
 }

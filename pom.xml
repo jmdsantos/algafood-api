@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.2.RELEASE</version>
+		<version>2.3.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.algaworks</groupId>
@@ -14,9 +14,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>algafood-api</name>
 	<description>API de delivery de comida</description>
-
+ 
 	<properties>
-		<java.version>8</java.version>
+		<java.version>14</java.version>
 	</properties>
 
 	<dependencies>
@@ -53,7 +53,11 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+		    <artifactId>flyway-core</artifactId>
+		    <version>6.5.5</version>
+		</dependency>
 	</dependencies>
 
 	<build>

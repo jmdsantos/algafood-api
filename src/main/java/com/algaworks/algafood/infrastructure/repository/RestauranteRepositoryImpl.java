@@ -24,7 +24,7 @@ import com.algaworks.algafood.domain.repository.RestauranteRepositoryQueries;
 import static com.algaworks.algafood.infrastructure.repository.spec.RestauranteSpecs.comFreteGratis;
 import static com.algaworks.algafood.infrastructure.repository.spec.RestauranteSpecs.comNomeSemelhante;
 
-import lombok.var;
+//import lombok.var;
 
 @Repository
 public class RestauranteRepositoryImpl implements RestauranteRepositoryQueries {
